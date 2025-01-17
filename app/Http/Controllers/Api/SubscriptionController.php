@@ -27,6 +27,7 @@ class SubscriptionController extends Controller
      *     summary="Get current user`s list of subscriptions",
      *     operationId="indexSubscription",
      *     tags={"Subscription"},
+     *     security={{ "sanctum": {} }},
      *     @OA\Parameter(
                 name="user_id",
      *          in="query",

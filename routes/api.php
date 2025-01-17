@@ -33,9 +33,13 @@ Route::group([
     Route::post('/login', [UserController::class, 'login']);
     Route::post('/password/reset', [UserController::class, 'resetPassword']);
 
-    Route::get('/subscriptions', [SubscriptionController::class, 'index']);
-    Route::post('/subscriptions', [SubscriptionController::class, 'store']);
-    Route::delete('/subscriptions/{id}', [SubscriptionController::class, 'destroy']);
+    Route::group([
+        'middleware' => ['auth:sanctum']
+        ], function () {
+        Route::get('/subscriptions', [SubscriptionController::class, 'index']);
+        Route::post('/subscriptions', [SubscriptionController::class, 'store']);
+        Route::delete('/subscriptions/{id}', [SubscriptionController::class, 'destroy']);
+    });
 
     Route::post('/testurl', [SubscriptionController::class, 'test']);
     Route::get('/test2', [SubscriptionController::class, 'test2']);

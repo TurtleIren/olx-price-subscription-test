@@ -106,7 +106,7 @@ class UserController extends Controller
             return response()->json(['message' => 'User registered successfully.', 'token' => $token], 201);
         } catch (\Exception $e) {
             Log::error('Failed to register: ' . $e->getMessage());
-            return response()->json(['error' => 'Failed to register'], 500);
+            return response()->json(['error' => 'Failed to register' . $e->getMessage()], 500);
         }
     }
 
